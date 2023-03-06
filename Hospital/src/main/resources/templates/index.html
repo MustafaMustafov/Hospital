@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<style>
+body {
+background-image: url("seaside.jpg");
+}
+</style>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Main menu</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</head>
+<body>
+            <div align="center"><h1>Menu</h1></div>
+            <div align="center" class="d-grid gap-2">
+                <br><div sec:authorize="hasAuthority('ADMIN')">
+                        <a href="/create-resort" class="btn btn-info"> Add new resort</a>
+                    </div>
+                <br><div sec:authorize="hasAuthority('ADMIN')">
+                        <a href="/create-hotel" class="btn btn-info"> Add new hotel</a>
+                    </div>
+                <br><div>
+                        <a href="/show-resorts" class="btn btn-info"> Show resort list</a>
+                    </div>
+                <br><div>
+                        <a href="/show-hotels" class="btn btn-info"> Show hotel list</a>
+                    </div>
+                <br>
+                <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Logout" />
+                </form>
+            </div>
+</body>
+</html>
