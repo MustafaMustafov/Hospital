@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main page - hospital app</title>
+    <link rel="stylesheet" href="/styles/hospital/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+</head>
+<body>
+    <!-- navbar -->
+    <div class="navbar">
+        <div class="text">
+            <h1 style="float: left;">Hospital app</h1>
+            <div class="links" style="float: right;">
+                <a th:href="@{/login}">SIGN IN</a>
+                <a th:href="@{/signup}">SIGN UP</a>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- main content -->
+    <section>
+        <div class="main">
+            <h1>Stay Healthy and Safe</h1>
+            <a href="" id="aboutbtn">See more <i class="fas fa-arrow-down"></i></a>
+        </div>
+    </section>
+
+    <!-- about -->
+    <section>
+        <div class="about">
+            <h1>About</h1>
+            <div class="list">
+                <ul>
+                    <li><p>We are thrilled to announce the launch of our new hospital app, which is designed to provide patients with an exceptional healthcare experience. Our app offers a range of features and services that make it easy for patients to access healthcare information, book appointments, and communicate with healthcare providers.</p></li>
+                    
+                    <li><p>Our mission is to make healthcare more accessible and convenient for everyone. With our new hospital app, we are taking a step towards achieving this goal. By using our app, patients can easily book appointments with their preferred healthcare providers, view their medical records, and receive personalized health-related advice.</p></li>
+    
+                    <li><p>We are committed to providing high-quality healthcare services to all our patients, and our new hospital app is an extension of this commitment. We believe that our app will make a significant difference in the lives of our patients by providing them with the tools and resources they need to manage their health effectively.</p></li>
+                </ul>
+            </div>
+            
+            
+        </div>
+    </section>
+
+    <!-- footer -->
+    <div class="footer">
+        <h2 id="footertxt"></h2>
+    </div>
+
+    <script src="/js/hospital/app.js"></script>
+</body>
+</html>

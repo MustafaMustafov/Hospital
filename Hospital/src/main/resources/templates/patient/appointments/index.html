@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient control panel - appointments</title>
+    <link rel="stylesheet" href="/styles/patient/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+</head>
+<body>
+    <h1 id="welcome">Appointments</h1>
+
+    <a href="" id="icon"><i class="fas fa-bars"></i></a>
+    <div class="sidebar">
+        <div class="heading">
+            <h1>Patient <span>Controls</span></h1> <a id="close" href=""><i class="fas fa-times"></i></a>
+        </div>
+        
+        <div class="list">
+            <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="index.html"><i class="fas fa-calendar-check"></i> Appointments</a>
+            <a href="create.html"><i class="fas fa-plus"></i> Book an appointment</a>
+            <a href="edit.html"><i class="fas fa-clock"></i> Reschedule an appointment</a>
+            <a href=""><i class="fas fa-window-close"></i> Cancel an appointment</a>
+        </div>
+        <div class="social">
+            <form th:action="@{/logout}" method="post">
+                <a href=""><i class="fas fa-sign-out-alt"></i> <input type="submit" value="Logout" /></a>
+            </form>
+        </div>
+    </div>
+    <script src="/js/patient/app.js"></script>
+</body>
+</html>
