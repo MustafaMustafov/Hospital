@@ -21,16 +21,16 @@ public class LoginSignUpController {
 
     @GetMapping("/login")
     public String viewHomePage() {
-        return "login";
+        return "/auth/login";
     }
 
     @GetMapping("/index")
     public String showMenu(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth.getAuthorities().equals("DOCTOR")) {
-            return "/doctor/doctor-index";
+            return "/doctor/index";
         } else {
-            return "/patient/patient-index";
+            return "/patient/index";
         }
     }
 
@@ -38,7 +38,7 @@ public class LoginSignUpController {
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("roles",Roles.values());
-        return "signup";
+        return "/auth/register";
     }
 
     @PostMapping("/process_register")
