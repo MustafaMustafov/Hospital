@@ -1,8 +1,7 @@
 package Project.Hospital.Entities;
 
-import Project.Hospital.Enums.Speciality;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="doctors")
@@ -11,9 +10,10 @@ public class Doctor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private int id;
-    private String first_name;
-    private String last_name;
-    private Speciality speciality;
+    private String firstName;
+    private String lastName;
+    @NotBlank
+    private String speciality;
     @OneToOne
     private User user;
 
@@ -25,27 +25,27 @@ public class Doctor {
         this.id = id;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public Speciality getSpeciality() {
+    public String getSpeciality() {
         return speciality;
     }
 
-    public void setSpeciality(Speciality speciality) {
+    public void setSpeciality(String speciality) {
         this.speciality = speciality;
     }
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,10 +19,10 @@
         </div>
         
         <div class="list">
-            <a href="../index.html"><i class="fas fa-home"></i> Home</a>
-            <a href="index.html"><i class="fas fa-calendar-check"></i> Appointments</a>
-            <a href="create.html"><i class="fas fa-plus"></i> Book an appointment</a>
-            <a href="edit.html"><i class="fas fa-clock"></i> Reschedule an appointment</a>
+            <a th:href="@{/index}"><i class="fas fa-home"></i> Home</a>
+            <a th:href="@{/index-appointment}"><i class="fas fa-calendar-check"></i> Appointments</a>
+            <a th:href="@{/create-appointment}"><i class="fas fa-plus"></i> Book an appointment</a>
+            <a th:href="@{/edit-appointment}"><i class="fas fa-clock"></i> Reschedule an appointment</a>
             <a href=""><i class="fas fa-window-close"></i> Cancel an appointment</a>
         </div>
         <div class="social">

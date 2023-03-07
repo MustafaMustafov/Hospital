@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainPageController {
-    @GetMapping
+    @GetMapping("/index")
     public String loadMainPage() {
         return "/hospital/index";
     }
