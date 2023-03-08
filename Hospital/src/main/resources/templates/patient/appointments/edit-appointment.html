@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient control panel - appointments</title>
+    <title>Patient control panel - create appointments</title>
     <link rel="stylesheet" href="/styles/patient/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 </head>
 <body>
-<h1 id="welcome">Appointments</h1>
+
+<h1 id="welcome">Reschedule Appointment</h1>
 
 <a href="" id="icon"><i class="fas fa-bars"></i></a>
 <div class="sidebar">
@@ -31,37 +32,24 @@
     </div>
 </div>
 <div>
-    <div align="center">
-        <h1> Appointments </h1>
-    </div>
-
-    <table class="table table-success table-striped">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Doctor</th>
-            <th>Speciality</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Appointment type</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="app : ${appointments}">
-            <td th:text="${app.id}"></td>
-            <td th:text="${app.doctor.firstName}"></td>
-            <td th:text="${app.doctor.speciality}"></td>
-            <td th:text="${app.date}"></td>
-            <td th:text="${app.time}"></td>
-            <td th:text="${app.appointmentType}"></td>
-            <td>
-                <div>
-                    <a th:href="@{/edit-appointment/{appId}(appId=${app.id})}"> Reschedule </a>
-                </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <form action="#" th:action="@{/update-appointment}" method="post" th:object="${appointment}">
+        <div class="form-group row">
+            <input type="hidden" th:field="*{id}"/>
+            <p>Doctor:
+                <select th:field="*{doctor}">
+                    <option th:each="i : ${doctorList}" th:value="${i.id}" th:text="${i.firstName} + (${i.speciality})"/>
+                </select>
+            </p>
+            <p>Date: <input type="date" th:field="*{date}"></p>
+            <p>Time: <input type="time" th:field="*{time}"></p>
+            <p>Appointment type:
+                <select th:field="*{appointmentType}">
+                    <option th:each="appTypeOpt : ${appointmentType}" th:value="${appTypeOpt}" th:text="${appTypeOpt}"/>
+                </select>
+            </p>
+            <p><input type="submit" value="Reschedule"></p>
+        </div>
+    </form>
 </div>
 <script src="/js/patient/app.js"></script>
 </body>
