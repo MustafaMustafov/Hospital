@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 </head>
 <body>
-    <h1 id="welcome">Welcome patient</h1>
+    <h1 class="appointments">Welcome patient</h1>
 
     <a href="" id="icon"><i class="fas fa-bars"></i></a>
     <div class="sidebar">
@@ -24,9 +24,9 @@
             <a th:href="@{/edit-appointment}"><i class="fas fa-clock"></i> Reschedule an appointment</a>
             <a th:href="@{/cancel-appointment}"><i class="fas fa-window-close"></i> Cancel an appointment</a>
         </div>
-        <div class="social">
-            <form th:action="@{/logout}" method="post">
-                <a href=""><i class="fas fa-sign-out-alt"></i> <input type="submit" value="Logout" /></a>
+        <div class="logout">
+            <form class="rand" th:action="@{/logout}" method="post">
+                <a href=""><i class="fas fa-sign-out-alt"></i> <input type="submit" value="Logout"></a>
             </form>
         </div>
     </div>

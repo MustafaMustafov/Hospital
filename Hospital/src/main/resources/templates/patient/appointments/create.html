@@ -10,7 +10,30 @@
 </head>
 <body>
 
-    <h1 id="welcome">Create Appointments</h1>
+    <div class="appointments">
+        <h1><i class="fas fa-plus"></i> Book an appointment</h1>
+
+        <form th:action="@{/submit-appointment}" method="post" th:object="${appointment}">
+            <div class="form-group row">
+                <input type="hidden" th:field="*{id}"/>
+                <p>Doctor:
+                    <label for="doc-list">
+                    <select id="doc-list" th:field="*{doctor}">
+                        <option th:each="i : ${doctorList}" th:value="${i.id}" th:text="${i.firstName} + (${i.speciality})"></option>
+                    </select>
+                </p>
+                <p>Date: <input type="date" th:field="*{date}"></p>
+                <p>Time: <input type="time" th:field="*{time}"></p>
+                <p>Appointment type:
+                    <label for="appoint-list">
+                    <select id="appoint-list" th:field="*{appointmentType}">
+                        <option th:each="appTypeOpt : ${appointmentType}" th:value="${appTypeOpt}" th:text="${appTypeOpt}"></option>
+                    </select>
+                </p>
+                <input type="submit" value="Book">
+            </div>
+        </form>
+    </div>
 
     <a href="" id="icon"><i class="fas fa-bars"></i></a>
     <div class="sidebar">
@@ -25,31 +48,11 @@
             <a th:href="@{/edit-appointment}"><i class="fas fa-clock"></i> Reschedule an appointment</a>
             <a th:href="@{/cancel-appointment}"><i class="fas fa-window-close"></i> Cancel an appointment</a>
         </div>
-        <div class="social">
-            <form th:action="@{/logout}" method="post">
-                <a href=""><i class="fas fa-sign-out-alt"></i> <input type="submit" value="Logout" /></a>
+        <div class="logout">
+            <form class="rand" th:action="@{/logout}" method="post">
+                <i class="fas fa-sign-out-alt"></i> <input class="rand2" type="submit" value="Logout">
             </form>
         </div>
-    </div>
-    <div>
-        <form action="#" th:action="@{/submit-appointment}" method="post" th:object="${appointment}">
-            <div class="form-group row">
-                <input type="hidden" th:field="*{id}"/>
-                <p>Doctor:
-                    <select th:field="*{doctor}">
-                        <option th:each="i : ${doctorList}" th:value="${i.id}" th:text="${i.firstName} + (${i.speciality})"/>
-                    </select>
-                </p>
-                <p>Date: <input type="date" th:field="*{date}"></p>
-                <p>Time: <input type="time" th:field="*{time}"></p>
-                <p>Appointment type:
-                    <select th:field="*{appointmentType}">
-                        <option th:each="appTypeOpt : ${appointmentType}" th:value="${appTypeOpt}" th:text="${appTypeOpt}"/>
-                    </select>
-                </p>
-                <p><input type="submit" value="Save"></p>
-            </div>
-        </form>
     </div>
     <script src="/js/patient/app.js"></script>
 </body>
