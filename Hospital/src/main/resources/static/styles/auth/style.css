@@ -173,3 +173,13 @@ input[type="submit"]:active{
 #back-btn:hover{
     text-decoration:underline;
 }
+
+.messages div{
+    text-align: center;
+    margin-top: -25px;
+    margin-bottom: 30px;
+    color: #fff;
+    padding: 10px;
+    background-color: #890000;
+    border-radius: 5px;
+}

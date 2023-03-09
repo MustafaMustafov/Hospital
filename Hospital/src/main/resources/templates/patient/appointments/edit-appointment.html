@@ -18,15 +18,15 @@
                 <input type="hidden" th:field="*{id}"/>
                 <p>Doctor:
                     <label for="doc-list">
-                        <select id="doc-list" th:field="*{doctor}">
-                            <option th:each="i : ${doctorList}" th:value="${i.id}" th:text="${i.firstName} + (${i.speciality})"></option>
+                        <select id="doc-list" th:field="*{doctor}" required>
+                            <option th:each="i : ${doctorList}" th:value="${i.id}" th:text="${i.firstName} + ' (' + ${i.speciality} + ')'"></option>
                         </select>
                 </p>
-                <p>Date: <input type="date" th:field="*{date}"></p>
-                <p>Time: <input type="time" th:field="*{time}"></p>
+                <p>Date: <input type="date" th:field="*{date}" required></p>
+                <p>Time: <input type="time" th:field="*{time}" required></p>
                 <p>Appointment type:
                     <label for="appoint-list">
-                        <select id="appoint-list" th:field="*{appointmentType}">
+                        <select id="appoint-list" th:field="*{appointmentType}" required>
                             <option th:each="appTypeOpt : ${appointmentType}" th:value="${appTypeOpt}" th:text="${appTypeOpt}"></option>
                         </select>
                 </p>

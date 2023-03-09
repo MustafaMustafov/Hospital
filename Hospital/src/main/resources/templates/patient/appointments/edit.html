@@ -20,6 +20,7 @@
                 <th>Date</th>
                 <th>Time</th>
                 <th>Appointment type</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -30,10 +31,8 @@
                 <td th:text="${app.date}"></td>
                 <td th:text="${app.time}"></td>
                 <td th:text="${app.appointmentType}"></td>
-                <td>
-                    <div>
-                        <a th:href="@{/edit-appointment/{appId}(appId=${app.id})}"> Reschedule </a>
-                    </div>
+                <td id="resc">
+                    <a id="resc-btn" th:href="@{/edit-appointment/{appId}(appId=${app.id})}"> Reschedule </a>
                 </td>
             </tr>
             </tbody>
