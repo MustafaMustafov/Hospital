@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 </head>
 <body>
-    <h1 class="appointments">Welcome patient</h1>
+    <h1 class="appointments" th:text="Welcome+${patientName}"></h1>
 
     <a href="" id="icon"><i class="fas fa-bars"></i></a>
     <div class="sidebar">
@@ -18,7 +18,7 @@
         </div>
         
         <div class="list">
-            <a th:href="@{/index}"><i class="fas fa-home"></i> Home</a>
+            <a th:href="@{/patient-home}"><i class="fas fa-home"></i> Home</a>
             <a th:href="@{/index-appointment}"><i class="fas fa-calendar-check"></i> Appointments</a>
             <a th:href="@{/create-appointment}"><i class="fas fa-plus"></i> Book an appointment</a>
             <a th:href="@{/edit-appointment}"><i class="fas fa-clock"></i> Reschedule an appointment</a>

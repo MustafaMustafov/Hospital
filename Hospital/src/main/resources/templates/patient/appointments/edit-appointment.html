@@ -12,7 +12,6 @@
 
     <div class="appointments">
         <h1><i class="fas fa-plus"></i> Reschedule an appointment</h1>
-
         <form th:action="@{/update-appointment}" method="post" th:object="${appointment}">
             <div class="form-group row">
                 <input type="hidden" th:field="*{id}"/>
@@ -21,6 +20,7 @@
                         <select id="doc-list" th:field="*{doctor}" required>
                             <option th:each="i : ${doctorList}" th:value="${i.id}" th:text="${i.firstName} + ' (' + ${i.speciality} + ')'"></option>
                         </select>
+                    </label>
                 </p>
                 <p>Date: <input type="date" th:field="*{date}" required></p>
                 <p>Time: <input type="time" th:field="*{time}" required></p>
@@ -29,6 +29,7 @@
                         <select id="appoint-list" th:field="*{appointmentType}" required>
                             <option th:each="appTypeOpt : ${appointmentType}" th:value="${appTypeOpt}" th:text="${appTypeOpt}"></option>
                         </select>
+                    </label>
                 </p>
                 <input type="submit" value="Reschedule">
             </div>
@@ -42,7 +43,7 @@
         </div>
 
         <div class="list">
-            <a th:href="@{/index}"><i class="fas fa-home"></i> Home</a>
+            <a th:href="@{/patient-home}"><i class="fas fa-home"></i> Home</a>
             <a th:href="@{/index-appointment}"><i class="fas fa-calendar-check"></i> Appointments</a>
             <a th:href="@{/create-appointment}"><i class="fas fa-plus"></i> Book an appointment</a>
             <a th:href="@{/edit-appointment}"><i class="fas fa-clock"></i> Reschedule an appointment</a>

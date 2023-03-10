@@ -9,5 +9,6 @@ import java.util.List;
 
 @Repository
 public interface AppointmentRepository extends CrudRepository<Appointment, Integer> {
-    List<Appointment> findByPatientId(int Id);
+    List<Appointment> findByPatientId(int id);
+    List<Appointment> findByDoctorId(int id);
 }
