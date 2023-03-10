@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/styles/auth/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+</head>
+<body>
+    <a id="back-btn" th:href="@{/index}"><i class="fas fa-arrow-left"></i> Go back home</a>
+    <div class="box">
+        <div class="form">
+            <form name="f" th:action="@{/login}" method="post">
+                <div class="messages">
+                    <div th:if="${param.error}" class="alert alert-error">
+                        Invalid username and password.
+                    </div>
+                    <div th:if="${param.logout}" class="alert alert-success">
+                        You have been logged out.
+                    </div>
+                </div>
+
+
+                <h2>SIGN IN</h2>
+                <div class="inputBox">
+                    <input type="text" name="username" required>
+                    <span>Username</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="password" name="password" required>
+                    <span>Password</span>
+                    <i></i>
+                </div>
+                <input type="submit" value="Login">
+                <div class="links">
+                    <a th:href="@{/signup}">Not a member? Sign-up</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/js/auth/app.js"></script>
+</body>
+</html>

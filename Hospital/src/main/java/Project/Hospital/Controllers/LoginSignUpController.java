@@ -6,6 +6,7 @@ import Project.Hospital.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,24 +22,23 @@ public class LoginSignUpController {
 
     @GetMapping("/login")
     public String viewHomePage() {
-        return "login";
+        return "/auth/login";
     }
 
-    @GetMapping("/index")
+    @GetMapping()
     public String showMenu(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth.getAuthorities().equals("DOCTOR")) {
-            return "/doctor/doctor-index";
+        if (auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("DOCTOR"))) {
+            return "/doctor/index";
         } else {
-            return "/patient/patient-index";
+            return "/patient/index";
         }
     }
 
     @GetMapping("/signup")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
-        model.addAttribute("roles",Roles.values());
-        return "signup";
+        return "/auth/register";
     }
 
     @PostMapping("/process_register")
@@ -46,7 +46,7 @@ public class LoginSignUpController {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-        user.setRole(user.getRole());
+        user.setRole(Roles.PATIENT.toString());
         user.setEnabled(true);
         user.setUsername(user.getUsername());
         userRepository.save(user);

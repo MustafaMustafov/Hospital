@@ -1,6 +1,6 @@
 package Project.Hospital.Enums;
 
-public enum AppointmentTypes {
+public enum AppointmentType {
     INITIAL,
     SECONDARY,
     CONSULTATION,

@@ -1,0 +1,107 @@
+body,html{
+    padding: 0;
+    margin: 0;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: lightcyan;
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+.sidebar{
+    height: 100%;
+    width: 400px;
+    position: fixed;
+    background-color: #fff;
+    transition: 500ms;
+    transform: translate(-100%);
+}
+.sidebar2{
+    transform:none;
+}
+h1{
+    margin: 0;
+    padding: 0;
+}
+.heading{
+    padding-top: 20px;
+    width: auto;
+    display: flex;
+    gap: 3em;
+    justify-content: space-around;
+}
+.heading span{
+    color: skyblue;
+}
+.heading a{
+    font-size: xx-large;
+    color: #000;
+}
+.heading a:hover{
+    color: red;
+    transform: rotate(360deg);
+    transition: 500ms;
+}
+.sidebar .list{
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    padding-top: 50px;
+}
+.list a{
+    text-decoration: none;
+    color: #000;
+    font-size: x-large;
+    width: auto;
+    height: 65px;
+    padding-left: 20px;
+    padding-top: 20px;
+    transition: 500ms;
+}
+.list a:hover{
+    background-color: skyblue;
+    color: lightcyan;
+    padding-left: 25px;
+}
+.logout{
+    width: auto;
+    height: 580px;
+    display: flex;
+    gap: 2em;
+    align-items: flex-end;
+    justify-content: center;
+}
+.logout a{
+    text-decoration: none;
+    color: #000;
+    font-size: x-large;
+    transition: 400ms;
+}
+.logout a:hover {
+    color: skyblue;
+}
+#icon{
+    color: skyblue;
+    text-decoration: none;
+    font-size: 40px;
+    position: absolute;
+    left: 95%;
+    top: 5%;
+}
+
+#welcome{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+}
+
+@media (max-width:900px){
+    .sidebar{
+        width: 100%;
+    }
+    #icon{
+        left: 85%;
+    }
+}
