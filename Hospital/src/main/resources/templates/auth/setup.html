@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Setup your profile</title>
@@ -9,14 +9,13 @@
 <body>
     <div class="appointments">
         <h1><i class="fas fa-plus"></i> Setup your profile</h1>
-
-        <form th:action="@{/submit-appointment}" method="post" th:object="${patient}">
+        <form th:action="@{/register-success}" method="post" th:object="${patient}">
             <div class="form-group row">
                 <input type="hidden" th:field="*{id}"/>
                 <p>First name: <input type="text" th:field="*{firstName}" required></p>
                 <p>Last name: <input type="text" th:field="*{lastName}" required></p>
                 <p>Age: <input type="number" th:field="*{age}" required></p>
-                <p>user id: <input type="hidden">Get logged user id</p>
+                <p><input type="hidden" th:field="*{user}"></p>
                 <input type="submit" value="Setup">
             </div>
         </form>

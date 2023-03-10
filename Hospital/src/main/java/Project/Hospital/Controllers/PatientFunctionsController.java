@@ -5,6 +5,7 @@ import Project.Hospital.Entities.Doctor;
 import Project.Hospital.Enums.AppointmentType;
 import Project.Hospital.Repositories.AppointmentRepository;
 import Project.Hospital.Repositories.DoctorRepository;
+import Project.Hospital.Repositories.UserRepository;
 import Project.Hospital.Service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,8 +13,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.sql.Date;
+import java.text.DateFormat;
 
 @Controller
 public class PatientFunctionsController {
@@ -24,6 +27,12 @@ public class PatientFunctionsController {
     @Autowired
     PatientService patientService;
 
+    @GetMapping("/patient-home")
+    public String showPatientHome(Model model) {
+        String patientName = patientService.loggedUserName();
+        model.addAttribute("patientName", patientName);
+        return "/patient/index";
+    }
     @GetMapping("/create-appointment")
     public String createAppointment(Model model) {
         Iterable <Doctor> doctors = doctorRepository.findAll();
@@ -36,10 +45,14 @@ public class PatientFunctionsController {
 
     @PostMapping("/submit-appointment")
     private ModelAndView saveAppointment(Appointment appointment) {
+        if (patientService.checkDate(appointment)) {
+            return new ModelAndView("redirect:/create-appointment");
+        } else if (!patientService.ifDateAndTimeEmpty(appointment)) {
+            return new ModelAndView("redirect:/create-appointment");
+        }
         patientService.setAppointmentPatient(appointment);
         appointmentRepository.save(appointment);
         return new ModelAndView("redirect:/");
-
     }
 
     @GetMapping("/index-appointment")
@@ -80,9 +93,15 @@ public class PatientFunctionsController {
 
     @PostMapping("/update-appointment")
     private ModelAndView updateAppointment(Appointment appointment) {
+        if (patientService.checkDate(appointment)) {
+            return new ModelAndView("redirect:/edit-appointment");
+        } else if (!patientService.ifDateAndTimeEmpty(appointment)) {
+            return new ModelAndView("redirect:/edit-appointment");
+        }
         patientService.setAppointmentPatient(appointment);
         appointmentRepository.save(appointment);
         return new ModelAndView("redirect:/");
     }
+
 
 }

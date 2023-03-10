@@ -1,7 +1,9 @@
 package Project.Hospital.Controllers;
 
+import Project.Hospital.Entities.Patient;
 import Project.Hospital.Entities.User;
 import Project.Hospital.Enums.Roles;
+import Project.Hospital.Repositories.PatientRepository;
 import Project.Hospital.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -13,12 +15,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.management.relation.Role;
-
 @Controller
 public class LoginSignUpController {
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    PatientRepository patientRepository;
 
     @GetMapping("/login")
     public String viewHomePage() {
@@ -41,8 +44,8 @@ public class LoginSignUpController {
         return "/auth/register";
     }
 
-    @PostMapping("/process_register")
-    public String processRegister(User user) {
+    @PostMapping("/setup-profile-info")
+    public String processRegister(User user, Model model) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
@@ -50,6 +53,16 @@ public class LoginSignUpController {
         user.setEnabled(true);
         user.setUsername(user.getUsername());
         userRepository.save(user);
-        return "register_success";
+        Patient patient = new Patient();
+        patient.setUser(user);
+        model.addAttribute("patient",patient);
+        return "/auth/setup";
     }
+
+    @PostMapping("/register-success")
+    public String registerSuccess(Patient patient) {
+        patientRepository.save(patient);
+        return "/auth/register_success";
+    }
+
 }
