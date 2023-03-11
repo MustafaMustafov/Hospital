@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,22 +12,22 @@
     <div class="filter-modal">
         <div class="header">
             <h1 style="color: #fff;">Filter</h1>
-            <a id="close-modal" href=""><i class="fas fa-times"></i></a>
+            <a id="close-modal1" href=""><i class="fas fa-times"></i></a>
         </div>
-        <form style="width: 70%;" method="post">
+        <form style="width: 70%;" th:action="@{/filter-appointments}" method="post">
             <div class="form-group row">
                 <input type="hidden">
                 <p>Name of patient  :
-                    <input style="width: 80%;" type="text">
+                    <input type="text" style="width: 80%;" name="patientName">
                 </p>
                 <p>Appointment type:
                     <label for="appoint-list">
-                        <select id="appoint-list">
-                            <option></option>
+                        <select id="appoint-list" name="appType">
+                            <option th:each="appTypeOpt : ${appointmentType}" th:value="${appTypeOpt}" th:text="${appTypeOpt}"></option>
                         </select>
                     </label>
                 </p>
-                <p>Patient id: <input style="width: 80%;" type="number"></p>
+                <p>Patient id: <input type="text" style="width: 80%;" name="patId"></p>
 
                 <div style="width: 100px;" class="radio-toolbar">
                     <p>Sort by:</p>
@@ -48,7 +48,7 @@
             <h1 style="color: #fff;">Group</h1>
             <a style="top: 5%;" id="close-modal" href=""><i class="fas fa-times"></i></a>
         </div>
-        <form style="width: auto; background-color: transparent;" method="post">
+        <form style="width: auto; background-color: transparent;" th:action="@{/group-appointments}" method="post">
             <div class="row2">
                 <div class="radio-toolbar">
                     <input type="radio" id="radioDoc" name="radioGroup" value="doctor name">
