@@ -3,7 +3,8 @@ body,html{
     margin: 0;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: lightcyan;
-    height: 100%;
+    height: fit-content;
+    padding-bottom: 50px;
     width: 100%;
     display: flex;
 }
@@ -64,9 +65,8 @@ h1{
 }
 .logout{
     width: auto;
-    height: 38%;
+    height: 35%;
     display: flex;
-    gap: 2em;
     align-items: flex-end;
     justify-content: center;
 }
@@ -340,5 +340,11 @@ label select:focus {
     }
     #icon{
         left: 85%;
+    }
+}
+
+@media (max-width: 1600px) and (min-width: 901px) {
+    .logout{
+        align-items: center;
     }
 }

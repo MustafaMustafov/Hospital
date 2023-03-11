@@ -28,4 +28,20 @@ public class DoctorService {
         }
         return id;
     }
+
+    public String loggedUserName() {
+        String doctorName = "";
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) auth.getPrincipal();
+        String username = userDetails.getUsername();
+        Iterable<Doctor> doctors = doctorRepository.findAll();
+        System.out.println(username);
+        int id = 0;
+        for (Doctor doc : doctors) {
+            if (doc.getUser().getUsername().equals(username)){
+                doctorName=doc.getLastName();
+            }
+        }
+        return doctorName;
+    }
 }

@@ -18,7 +18,9 @@ public class DoctorFunctionsController {
     DoctorService doctorService;
 
     @GetMapping("/doctor-home")
-    public String showHome() {
+    public String showDoctorHome(Model model) {
+        String doctorName = doctorService.loggedUserName();
+        model.addAttribute("doctorName", doctorName);
         return "/doctor/index";
     }
     @GetMapping("/doctor-appointments")

@@ -3,7 +3,8 @@ body,html{
     margin: 0;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: lightcyan;
-    height: 100%;
+    height: fit-content;
+    padding-bottom: 50px;
     width: 100%;
     display: flex;
 }
@@ -52,7 +53,7 @@ h1{
     color: #000;
     font-size: x-large;
     width: auto;
-    height: 65px;
+    height: 85px;
     padding-left: 20px;
     padding-top: 20px;
     transition: 500ms;
@@ -64,19 +65,20 @@ h1{
 }
 .logout{
     width: auto;
-    height: 580px;
+    height: 45%;
     display: flex;
-    gap: 2em;
     align-items: flex-end;
     justify-content: center;
 }
-.logout a{
-    text-decoration: none;
+.logout input{
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
     color: #000;
     font-size: x-large;
     transition: 400ms;
 }
-.logout a:hover {
+.logout input:hover {
     color: skyblue;
 }
 #icon{
@@ -88,13 +90,232 @@ h1{
     top: 5%;
 }
 
-#welcome{
+.appointments{
     width: 100%;
-    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-size: 30px;
+    flex-direction: column;
+    margin-top: 50px;
+    gap: 3em;
+}
+
+.appointments h1{
+    font-size: 40px;
+}
+
+table{
+    border: 2px solid #fff;
+    margin-left: 100px;
+}
+
+th{
+    color: #fff;
+    background-color: #04022C;
+}
+
+th, td {
+    text-align: left;
+    padding: 20px;
+    font-family: "Arial Rounded MT Bold";
+}
+
+tr:nth-child(even) {
+    background-color: #C9C9C9;
+}
+
+tr:nth-child(odd) {
+    background-color: #D3D2E5;
+}
+
+form:not([class*='rand'], [class*='rand3']) {
+    padding:20px;
+    width:400px;
+    height:auto;
+    overflow:hidden;
+    background-color:#04022C;
+    color: #fff;
+    border-radius:10px;
+}
+
+form:not([class*='rand'], [class*='rand3']) label {
+    font-size:14px;
+    color:darkgray;
+    cursor:pointer;
+}
+
+form:not([class*='rand'], [class*='rand3']) label,
+form:not([class*='rand'], [class*='rand3']) input {
+    float:left;
+    clear:both;
+}
+
+form:not([class*='rand'], [class*='rand3']) input {
+    margin:15px 0;
+    padding:15px 10px;
+    margin-bottom: 35px;
+    width:100%;
+    outline:none;
+    border:1px solid #bbb;
+    border-radius:20px;
+    display:inline-block;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    -webkit-transition:0.2s ease all;
+    -moz-transition:0.2s ease all;
+    -ms-transition:0.2s ease all;
+    -o-transition:0.2s ease all;
+    transition:0.2s ease all;
+}
+
+form:not([class*='rand']) input[type=text]:focus,
+form:not([class*='rand']) input[type="password"]:focus {
+    border-color:cornflowerblue;
+}
+
+input[type=submit]:not([class*='rand2']) {
+    width:50%;
+    background:lightcyan;
+    border:none;
+    color:#04022C;
+    cursor:pointer;
+    display:inline-block;
+    float:right;
+    clear:right;
+    transition:200ms ease-in-out;
+    padding: 15px;
+}
+
+input[type=submit]:hover:not([class*='rand2'], [class*='rand3']) {
+    opacity:0.8;
+    transform: scale(110%);
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
+}
+
+label {
+    position: relative;
+    display: block;
+    width: 90%;
+    margin-bottom: 35px;
+    margin-top: 15px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+label:not([class="btn btn-default"], [class="radio1"])::after {
+    content: ' ';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40px;
+    height: 100%;
+    display: block;
+    background: #24d7ea url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOBAMAAAGq7RFVAAAAJ1BMVEX///////////////////////////////////////////////////9Ruv0SAAAADHRSTlMACAoREoKDt7y9zc5qtZoyAAAAcklEQVQIHQXBsQnCUAAFwFOCCKbIABaWERzi1yaFAzmEpHYEC8GUKVQEkbyhvOOkZqdWt0/QYKqLzQeF7dv6y/RLwa2wYtk4Xxxe+t8yd1WuM/rcUc2gYHEeoP02umSgTR50ybBPRuiSZAS6ZAQ4jgCAPyjYJiRH4fymAAAAAElFTkSuQmCC') no-repeat center center;
+    pointer-events: none;
+}
+
+label select {
+    border: 5px solid #eeeeee;
+    background: white;
+    padding: 7px 20px 7px 20px;
+    width: 100%;
+    font-size: 16px;
+    font-family: monospace;
+    cursor: pointer;
+}
+
+label select:focus {
+    outline: 1px dotted #A9A9A9;
+}
+
+.filter-modal, .group-modal{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    height: fit-content;
+    background-color: #04022C;
+    border-radius: 5px;
+    position: absolute;
+    margin-left: 50px;
+    top: 10%;
+    padding: 20px;
+}
+#close-modal{
+    text-decoration: none;
+    color: red;
+    font-size: xx-large;
+    position: absolute;
+    left: 93%;
+    margin-right: 10px;
+    bottom: 91%;
+}
+.filter-group-cl{
+    box-shadow: 0 0 0 max(100vh, 100vw) rgba(0, 0, 0, 0.7);
+    display: flex;
+}
+
+.row2{
+    display: flex;
+    flex-direction: row;
+}
+
+.radio-toolbar {
+    display: flex;
+    gap: 2em;
+    margin: 10px;
+}
+
+.radio-toolbar input[type="radio"] {
+    opacity: 0;
+    position: fixed;
+    width: 0;
+}
+
+.radio-toolbar label {
+    margin-top: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 50px;
+    background-color: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 10px 20px;
+    font-family: sans-serif, Arial;
+    font-size: 16px;
+    border-radius: 4px;
+    text-align: center;
+    transition: 400ms ease-in-out;
+}
+
+.radio-toolbar label:hover{
+    background-color: #fff;
+    color: #04022C;
+}
+
+.radio-toolbar input[type="radio"]:checked + label {
+    background-color: #fff;
+    color: #04022C;
+}
+
+.header{
+    cursor: move;
+    width: 100%;
+    display: flex;
 }
 
 @media (max-width:900px){
@@ -104,4 +325,20 @@ h1{
     #icon{
         left: 85%;
     }
+}
+
+@media (max-width: 1600px) and (min-width: 901px) {
+    .logout{
+        align-items: center;
+    }
+
+    #close-modal{
+        left: 87%;
+    }
+
+    .filter-modal{
+        top: 0;
+        margin-top: 3%;
+    }
+
 }

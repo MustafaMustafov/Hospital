@@ -124,7 +124,7 @@ body{
 }
 .inputBox input:valid ~ i,
 .inputBox input:focus ~ i{
-     height: 44px;
+     height: 40px;
 }
 
 .links{
