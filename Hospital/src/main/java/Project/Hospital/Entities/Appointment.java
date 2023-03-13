@@ -13,8 +13,14 @@ public class Appointment {
 
     private int id;
     @OneToOne
+//    @JoinTable(name="doctors",
+//            joinColumns =@JoinColumn(name="appointment_id"),
+//            inverseJoinColumns = @JoinColumn(name="doctor_id"))
     private Doctor doctor;
     @OneToOne
+//    @JoinTable(name="patients",
+//                joinColumns =@JoinColumn(name="appointment_id"),
+//                inverseJoinColumns = @JoinColumn(name="patient_id"))
     private Patient patient;
     private Date date;
     private String time;

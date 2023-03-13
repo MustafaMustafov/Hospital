@@ -14,21 +14,15 @@
             <h1 style="color: #fff;">Filter</h1>
             <a id="close-modal1" href=""><i class="fas fa-times"></i></a>
         </div>
-        <form style="width: 70%;" th:action="@{/filter-appointments}" method="post">
+        <form style="width: 70%;" th:action="@{/sort-appointments}" method="post">
             <div class="form-group row">
-                <input type="hidden">
-                <p>Name of patient  :
-                    <input type="text" style="width: 80%;" name="patientName">
+                <p>
+                    <select name="sort">
+                        <option>Patient ID</option>
+                        <option>Patient name</option>
+                        <option>Appointment time</option>
+                    </select>
                 </p>
-                <p>Appointment type:
-                    <label for="appoint-list">
-                        <select id="appoint-list" name="appType">
-                            <option th:each="appTypeOpt : ${appointmentType}" th:value="${appTypeOpt}" th:text="${appTypeOpt}"></option>
-                        </select>
-                    </label>
-                </p>
-                <p>Patient id: <input type="text" style="width: 80%;" name="patId"></p>
-
                 <div style="width: 100px;" class="radio-toolbar">
                     <p>Sort by:</p>
                     <input type="radio" id="radioASC" name="radioGroup" value="asc">
@@ -38,7 +32,7 @@
                     <label class="radio1" for="radioDESC">DESC</label>
                 </div>
             </div>
-            <input type="submit" value="Filter">
+            <input type="submit" value="Order">
         </form>
 
     </div>
@@ -72,6 +66,8 @@
             <tr>
                 <th>Id</th>
                 <th>Doctor</th>
+                <th>Patient Id</th>
+                <th>Patient</th>
                 <th>Speciality</th>
                 <th>Date</th>
                 <th>Time</th>
@@ -82,6 +78,8 @@
             <tr th:each="app : ${appointments}">
                 <td th:text="${app.id}"></td>
                 <td th:text="${app.doctor.firstName}"></td>
+                <td th:text="${app.patient.id}"></td>
+                <td th:text="${app.patient.firstName}"></td>
                 <td th:text="${app.doctor.speciality}"></td>
                 <td th:text="${app.date}"></td>
                 <td th:text="${app.time}"></td>
