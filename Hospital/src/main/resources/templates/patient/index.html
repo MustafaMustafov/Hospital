@@ -9,7 +9,21 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 </head>
 <body>
-    <h1 class="appointments" th:text="Welcome+ ' ' + ${patientName}"></h1>
+    <h1 class="appointments">
+        <p th:text="Welcome+ ' ' + ${loggedPat.firstName}"></p>
+        <div class="container">
+            <div class="user-image">
+                <img src="https://www.zs.com/content/dam/images/stock/Patient-holding-doctors-hand.jpg"
+                     alt="this image contains user-image">
+            </div>
+
+            <div class="content">
+                <h3 class="name" th:text="${loggedPat.firstName + ' ' + loggedPat.lastName}"></h3>
+                <p class="username" th:text="'@' + ${loggedPat.user.username}"></p>
+                <p class="details" th:text="Age + ' - ' + ${loggedPat.age}"></p>
+            </div>
+        </div>
+    </h1>
 
     <a href="" id="icon"><i class="fas fa-bars"></i></a>
     <div class="sidebar">
@@ -18,11 +32,11 @@
         </div>
         
         <div class="list">
-            <a th:href="@{/patient-home}"><i class="fas fa-home"></i> Home</a>
-            <a th:href="@{/index-appointment}"><i class="fas fa-calendar-check"></i> Appointments</a>
-            <a th:href="@{/create-appointment}"><i class="fas fa-plus"></i> Book an appointment</a>
-            <a th:href="@{/edit-appointment}"><i class="fas fa-clock"></i> Reschedule an appointment</a>
-            <a th:href="@{/cancel-appointment}"><i class="fas fa-window-close"></i> Cancel an appointment</a>
+            <a th:href="@{/patient-controls}"><i class="fas fa-home"></i> Home</a>
+            <a th:href="@{/patient-controls/appointments}"><i class="fas fa-calendar-check"></i> Appointments</a>
+            <a th:href="@{/patient-controls/create-appointment}"><i class="fas fa-plus"></i> Book an appointment</a>
+            <a th:href="@{/patient-controls/edit-appointment}"><i class="fas fa-clock"></i> Reschedule an appointment</a>
+            <a th:href="@{/patient-controls/cancel-appointment}"><i class="fas fa-window-close"></i> Cancel an appointment</a>
         </div>
         <div class="logout">
             <form class="rand" th:action="@{/logout}" method="post">

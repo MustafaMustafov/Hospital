@@ -9,7 +9,21 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 </head>
 <body>
-<h1 class="appointments" th:text="Welcome+ ' ' + ${doctorName}"></h1>
+    <h1 class="appointments">
+        <p th:text="Welcome+ ' ' + ${loggedDoc.lastName}"></p>
+        <div class="container">
+            <div class="user-image">
+                <img src="https://www.liveabout.com/thmb/zNzhc9WxUE_lf6r3P0yuAfBaoV0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/doctor-with-stethoscope-in-hospital-642394515-5aa9a0b8a9d4f90037431454.jpg"
+                     alt="this image contains user-image">
+            </div>
+
+            <div class="content">
+                <h3 class="name" th:text="${loggedDoc.firstName + ' ' + loggedDoc.lastName}"></h3>
+                <p class="username" th:text="'@' + ${loggedDoc.user.username}"></p>
+                <p class="details" th:text="Specialty + ' - ' + ${loggedDoc.speciality}"></p>
+            </div>
+        </div>
+    </h1>
 
     <a href="" id="icon"><i class="fas fa-bars"></i></a>
     <div class="sidebar">
@@ -18,8 +32,9 @@
         </div>
         
         <div class="list">
-            <a th:href="@{/doctor-home}"><i class="fas fa-home"></i> Home</a>
-            <a th:href="@{/doctor-appointments}"><i class="fas fa-calendar-check"></i> Appointments</a>
+            <a th:href="@{/doctor-controls}"><i class="fas fa-home"></i> Home</a>
+            <a th:href="@{/doctor-controls/all-appointments}"><i class="fas fa-calendar-check"></i> All Appointments</a>
+            <a th:href="@{/doctor-controls/appointments}"><i class="fas fa-calendar-check"></i> Appointments</a>
         </div>
         <div style="margin-top: 120px" class="logout">
             <form class="rand" th:action="@{/logout}" method="post">

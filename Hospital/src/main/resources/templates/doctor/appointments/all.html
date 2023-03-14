@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All patients</title>
+    <link rel="stylesheet" href="/styles/doctor/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+</head>
+<body>
+  <div class="group-modal">
+    <div class="header">
+      <h1 style="color: #fff;">Group</h1>
+      <a style="top: 5%;" id="close-modal" href=""><i class="fas fa-times"></i></a>
+    </div>
+    <form style="width: auto; background-color: transparent;" th:action="@{/doctor-controls/group-appointments}" method="get">
+      <div class="row2">
+        <div class="radio-toolbar">
+          <div class="col">
+            <input type="radio" id="radioDoc" name="radioGroup" value="docName">
+            <label class="radio1" for="radioDoc">Doctor name</label>
+            <p id="group-doctor">Enter name: <input type="text" name="doctorName"></p>
+          </div>
+
+          <div class="col">
+            <input type="radio" id="radioSpecialty" name="radioGroup" value="specialty">
+            <label class="radio1" for="radioSpecialty">Specialty</label>
+            <p id="group-specialty">Enter specialty: <input type="text" name="specialty"></p>
+          </div>
+
+          <div class="col">
+            <input type="radio" id="radioDate" name="radioGroup" value="date">
+            <label class="radio1" for="radioDate">Date</label>
+            <p id="group-date">Enter date: <input type="date" name="date"></p>
+          </div>
+        </div>
+      </div>
+      <input type="submit" value="Group">
+    </form>
+  </div>
+
+  <div class="appointments">
+    <h1><i class="fas fa-calendar-check"></i> Info</h1>
+    <table class="table table-success table-striped">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Doctor</th>
+        <th>Patient Id</th>
+        <th>Patient</th>
+        <th>Speciality</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Appointment type</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="app : ${appointments}">
+        <td th:text="${app.id}"></td>
+        <td th:text="${app.doctor.firstName}"></td>
+        <td th:text="${app.patient.id}"></td>
+        <td th:text="${app.patient.firstName}"></td>
+        <td th:text="${app.doctor.speciality}"></td>
+        <td th:text="${app.date}"></td>
+        <td th:text="${app.time}"></td>
+        <td th:text="${app.appointmentType}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <a href="" id="icon"><i class="fas fa-bars"></i></a>
+  <div class="sidebar">
+    <div class="heading">
+      <h1>Doctor <span>Controls</span></h1> <a id="close" href=""><i class="fas fa-times"></i></a>
+    </div>
+
+    <div class="list">
+      <a th:href="@{/doctor-controls}"><i class="fas fa-home"></i> Home</a>
+      <a th:href="@{/doctor-controls/all-appointments}"><i class="fas fa-calendar-check"></i> All Appointments</a>
+      <a th:href="@{/doctor-controls/appointments}"><i class="fas fa-calendar-check"></i> Appointments</a>
+      <a id="group" href=""><i class="fas fa-layer-group"></i> Group</a>
+    </div>
+
+    <div class="logout">
+      <form class="rand" th:action="@{/logout}" method="post">
+        <i class="fas fa-sign-out-alt"></i> <input class="rand2" type="submit" value="Logout">
+      </form>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
+  <script src="/js/doctor/app.js"></script>
+</body>
+</html>

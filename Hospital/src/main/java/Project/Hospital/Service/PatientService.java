@@ -1,6 +1,7 @@
 package Project.Hospital.Service;
 
 import Project.Hospital.Entities.Appointment;
+import Project.Hospital.Entities.Doctor;
 import Project.Hospital.Entities.Patient;
 import Project.Hospital.Repositories.AppointmentRepository;
 import Project.Hospital.Repositories.PatientRepository;
@@ -85,6 +86,21 @@ public class PatientService {
                 }
         }
         return empty;
+    }
+
+    public Patient loggedPat() {
+        Patient patient = null;
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) auth.getPrincipal();
+        String username = userDetails.getUsername();
+        Iterable<Patient> patients = patientRepository.findAll();
+        int id = 0;
+        for (Patient pat : patients) {
+            if (pat.getUser().getUsername().equals(username)){
+                patient = pat;
+            }
+        }
+        return patient;
     }
 
 }

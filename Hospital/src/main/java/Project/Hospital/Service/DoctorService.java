@@ -10,6 +10,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
 import java.util.List;
 
 @Service
@@ -34,20 +36,19 @@ public class DoctorService {
         return id;
     }
 
-    public String loggedUserName() {
-        String doctorName = "";
+    public Doctor loggedDoc() {
+        Doctor doctor = null;
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) auth.getPrincipal();
         String username = userDetails.getUsername();
         Iterable<Doctor> doctors = doctorRepository.findAll();
-        System.out.println(username);
         int id = 0;
         for (Doctor doc : doctors) {
             if (doc.getUser().getUsername().equals(username)){
-                doctorName=doc.getLastName();
+                doctor = doc;
             }
         }
-        return doctorName;
+        return doctor;
     }
 
     public String sortBy(String sort) {
@@ -71,5 +72,20 @@ public class DoctorService {
             appointments = appointmentRepository.findBydoctorId(doctorId,Sort.by(sortBy(sort)).ascending());
         }
         return appointments;
+    }
+
+    public void groupAppointments(String value, String doctorName, Model model, String specialty, String date) {
+        List<Appointment> appointments = null;
+        if (!value.equalsIgnoreCase("docName")) {
+            if (value.equalsIgnoreCase("specialty")) {
+                appointments = appointmentRepository.groupBySpecialty(specialty);
+            } else if (value.equalsIgnoreCase("date")) {
+                appointments = appointmentRepository.groupByDate(date);
+            }
+        } else {
+            appointments = appointmentRepository.groupByDoctorName(doctorName);
+        }
+
+        model.addAttribute("appointments", appointments);
     }
 }

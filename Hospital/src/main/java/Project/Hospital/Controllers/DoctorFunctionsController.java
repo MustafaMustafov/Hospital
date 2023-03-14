@@ -1,35 +1,50 @@
 package Project.Hospital.Controllers;
 
 import Project.Hospital.Entities.Appointment;
+import Project.Hospital.Entities.Doctor;
+import Project.Hospital.Entities.Patient;
 import Project.Hospital.Enums.AppointmentType;
 import Project.Hospital.Repositories.AppointmentRepository;
+import Project.Hospital.Repositories.PatientRepository;
 import Project.Hospital.Service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @Controller
+@RequestMapping("/doctor-controls")
 public class DoctorFunctionsController {
     @Autowired
     AppointmentRepository appointmentRepository;
 
     @Autowired
+    PatientRepository patientRepository;
+
+    @Autowired
     DoctorService doctorService;
 
-    @GetMapping("/doctor-home")
+    @GetMapping
     public String showDoctorHome(Model model) {
-        String doctorName = doctorService.loggedUserName();
-        model.addAttribute("doctorName", doctorName);
+        Doctor loggedDoc = doctorService.loggedDoc();
+        model.addAttribute("loggedDoc", loggedDoc);
         return "/doctor/index";
     }
-    @GetMapping("/doctor-appointments")
+    @GetMapping("/appointments")
     public String showAppointments(Model model) {
         int id = doctorService.loggedUserId();
         AppointmentType appType = AppointmentType.INITIAL;
@@ -39,25 +54,24 @@ public class DoctorFunctionsController {
         return "/doctor/appointments/index";
     }
 
-//    @GetMapping("filter-appointments")
-//    public String groupAppointments(Model model) {
-//        int id = doctorService.loggedUserId();
-//        model.addAttribute("appointments",appointmentRepository.findByDoctorId(id));
-//        return "/doctor/appointments/group-appointments";
-//    }
-//
-//    @GetMapping("group-appointments")
-//    public String sortAppointments(Model model) {
-//        int id = doctorService.loggedUserId();
-//        model.addAttribute("appointments",appointmentRepository.findByDoctorId(id));
-//        return "/doctor/appointments/sort-appointments";
-//    }
+    @GetMapping("/all-appointments")
+    public String showAllAppointments(Model model) {
+        Iterable<Appointment> appointments = appointmentRepository.findAll();
+        model.addAttribute("appointments", appointments);
+        return "/doctor/appointments/all";
 
-    @PostMapping("/group-appointments")
-    public ModelAndView groupAppointments() {
-        // last functionality to do
-        int id = doctorService.loggedUserId();
-        return new ModelAndView("redirect:/");
+    }
+
+    @GetMapping("/group-appointments")
+    public String groupBy(
+            @RequestParam("radioGroup") String value,
+            @RequestParam("doctorName") String doctorName,
+            @RequestParam("specialty") String specialty,
+            @RequestParam("date") String date,
+            Model model
+    ){
+        doctorService.groupAppointments(value, doctorName, model, specialty, date);
+        return "doctor/appointments/all";
     }
 
     @PostMapping("/sort-appointments")

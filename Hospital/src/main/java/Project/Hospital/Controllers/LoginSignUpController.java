@@ -28,7 +28,7 @@ public class LoginSignUpController {
         return "/auth/login";
     }
 
-    @GetMapping()
+    @GetMapping
     public String showMenu(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("DOCTOR"))) {
@@ -38,7 +38,7 @@ public class LoginSignUpController {
         }
     }
 
-    @GetMapping("/signup")
+    @GetMapping("/sign-up")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
         return "/auth/register";

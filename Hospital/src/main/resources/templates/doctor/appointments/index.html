@@ -12,17 +12,17 @@
     <div class="filter-modal">
         <div class="header">
             <h1 style="color: #fff;">Filter</h1>
-            <a id="close-modal1" href=""><i class="fas fa-times"></i></a>
+            <a id="close-modal" href=""><i class="fas fa-times"></i></a>
         </div>
-        <form style="width: 70%;" th:action="@{/sort-appointments}" method="post">
+        <form style="width: 70%;" th:action="@{/doctor-controls/sort-appointments}" method="post">
             <div class="form-group row">
-                <p>
-                    <select name="sort">
+                <label for="appoint-list">
+                    <select id="appoint-list" name="sort">
                         <option>Patient ID</option>
                         <option>Patient name</option>
                         <option>Appointment time</option>
                     </select>
-                </p>
+                </label>
                 <div style="width: 100px;" class="radio-toolbar">
                     <p>Sort by:</p>
                     <input type="radio" id="radioASC" name="radioGroup" value="asc">
@@ -35,28 +35,6 @@
             <input type="submit" value="Order">
         </form>
 
-    </div>
-
-    <div class="group-modal">
-        <div class="header">
-            <h1 style="color: #fff;">Group</h1>
-            <a style="top: 5%;" id="close-modal" href=""><i class="fas fa-times"></i></a>
-        </div>
-        <form style="width: auto; background-color: transparent;" th:action="@{/group-appointments}" method="post">
-            <div class="row2">
-                <div class="radio-toolbar">
-                    <input type="radio" id="radioDoc" name="radioGroup" value="doctor name">
-                    <label class="radio1" for="radioDoc">Doctor name</label>
-
-                    <input type="radio" id="radioSpecialty" name="radioGroup" value="specialty">
-                    <label class="radio1" for="radioSpecialty">Specialty</label>
-
-                    <input type="radio" id="radioDate" name="radioGroup" value="date">
-                    <label class="radio1" for="radioDate">Date</label>
-                </div>
-            </div>
-            <input type="submit" value="Group">
-        </form>
     </div>
 
     <div class="appointments">
@@ -95,10 +73,10 @@
         </div>
 
         <div class="list">
-            <a th:href="@{/doctor-home}"><i class="fas fa-home"></i> Home</a>
-            <a th:href="@{/doctor-appointments}"><i class="fas fa-calendar-check"></i> Appointments</a>
+            <a th:href="@{/doctor-controls}"><i class="fas fa-home"></i> Home</a>
+            <a th:href="@{/doctor-controls/all-appointments}"><i class="fas fa-calendar-check"></i> All Appointments</a>
+            <a th:href="@{/doctor-controls/appointments}"><i class="fas fa-calendar-check"></i> Appointments</a>
             <a id="filter" th:href="@{/doctor-appointments}"><i class="fas fa-filter"></i> Filter</a>
-            <a id="group" th:href="@{/doctor-appointments}"><i class="fas fa-layer-group"></i> Group</a>
         </div>
 
         <div class="logout">

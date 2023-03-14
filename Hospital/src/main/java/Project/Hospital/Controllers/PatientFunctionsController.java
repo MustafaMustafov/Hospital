@@ -2,6 +2,7 @@ package Project.Hospital.Controllers;
 
 import Project.Hospital.Entities.Appointment;
 import Project.Hospital.Entities.Doctor;
+import Project.Hospital.Entities.Patient;
 import Project.Hospital.Enums.AppointmentType;
 import Project.Hospital.Repositories.AppointmentRepository;
 import Project.Hospital.Repositories.DoctorRepository;
@@ -13,12 +14,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Date;
 import java.text.DateFormat;
 
 @Controller
+@RequestMapping("/patient-controls")
 public class PatientFunctionsController {
     @Autowired
     AppointmentRepository appointmentRepository;
@@ -27,10 +30,10 @@ public class PatientFunctionsController {
     @Autowired
     PatientService patientService;
 
-    @GetMapping("/patient-home")
+    @GetMapping
     public String showPatientHome(Model model) {
-        String patientName = patientService.loggedUserName();
-        model.addAttribute("patientName", patientName);
+        Patient loggedPat = patientService.loggedPat();
+        model.addAttribute("loggedPat", loggedPat);
         return "/patient/index";
     }
     @GetMapping("/create-appointment")
@@ -55,7 +58,7 @@ public class PatientFunctionsController {
         return new ModelAndView("redirect:/");
     }
 
-    @GetMapping("/index-appointment")
+    @GetMapping("/appointments")
     public String showAppointment(Model model) {
         int id = patientService.loggedUserId();
         model.addAttribute("appointments",appointmentRepository.findByPatientId(id));

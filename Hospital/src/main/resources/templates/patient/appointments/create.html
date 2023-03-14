@@ -12,7 +12,7 @@
 
     <div class="appointments">
         <h1><i class="fas fa-plus"></i> Book an appointment</h1>
-        <form th:action="@{/submit-appointment}" method="post" th:object="${appointment}">
+        <form th:action="@{/patient-controls/submit-appointment}" method="post" th:object="${appointment}">
             <div class="form-group row">
                 <input type="hidden" th:field="*{id}"/>
                 <p>Doctor:
@@ -43,11 +43,11 @@
         </div>
         
         <div class="list">
-            <a th:href="@{/patient-home}"><i class="fas fa-home"></i> Home</a>
-            <a th:href="@{/index-appointment}"><i class="fas fa-calendar-check"></i> Appointments</a>
-            <a th:href="@{/create-appointment}"><i class="fas fa-plus"></i> Book an appointment</a>
-            <a th:href="@{/edit-appointment}"><i class="fas fa-clock"></i> Reschedule an appointment</a>
-            <a th:href="@{/cancel-appointment}"><i class="fas fa-window-close"></i> Cancel an appointment</a>
+            <a th:href="@{/patient-controls}"><i class="fas fa-home"></i> Home</a>
+            <a th:href="@{/patient-controls/appointments}"><i class="fas fa-calendar-check"></i> Appointments</a>
+            <a th:href="@{/patient-controls/create-appointment}"><i class="fas fa-plus"></i> Book an appointment</a>
+            <a th:href="@{/patient-controls/edit-appointment}"><i class="fas fa-clock"></i> Reschedule an appointment</a>
+            <a th:href="@{/patient-controls/cancel-appointment}"><i class="fas fa-window-close"></i> Cancel an appointment</a>
         </div>
         <div class="logout">
             <form class="rand" th:action="@{/logout}" method="post">

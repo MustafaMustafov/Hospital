@@ -12,10 +12,11 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private int id;
-    @OneToOne
 //    @JoinTable(name="doctors",
 //            joinColumns =@JoinColumn(name="appointment_id"),
 //            inverseJoinColumns = @JoinColumn(name="doctor_id"))
+    @ManyToOne
+    @JoinColumn(name = "doctor_id", nullable = true, referencedColumnName = "id")
     private Doctor doctor;
     @OneToOne
 //    @JoinTable(name="patients",

@@ -5,6 +5,15 @@ let buttons = document.querySelector(".list")
 let body = document.querySelector("*")
 let closemodal = document.querySelectorAll("#close-modal")
 let modals = document.querySelectorAll(".group-modal, .filter-modal")
+let groupDoctor = document.getElementById("group-doctor")
+let groupSpecialty = document.getElementById("group-specialty")
+let groupDate = document.getElementById("group-date")
+let radioDoctor = document.getElementById("radioDoc")
+let radioSpecialty = document.getElementById("radioSpecialty")
+let radioDate = document.getElementById("radioDate")
+
+let arr = [groupDoctor, groupSpecialty, groupDate]
+let radioArr = [radioDoctor, radioSpecialty, radioDate]
 
 toggle.addEventListener("click", toggleSidebar)
 closebtn.addEventListener("click", closeSidebar)
@@ -56,3 +65,24 @@ function closeModal(e) {
 $(".filter-modal, .group-modal").draggable({
     handle: ".header"
 });
+
+function getInput(radioButton, input) {
+    radioButton.addEventListener("click", () => {
+        if(radioButton.checked) {
+            arr.forEach(inp => {
+                inp.style.display = "none"
+            });
+            input.style.display = "flex"
+        }
+    })
+
+}
+
+let i = 0;
+radioArr.forEach(radio => {
+    getInput(radio, arr[i])
+    i++;
+})
+
+
+

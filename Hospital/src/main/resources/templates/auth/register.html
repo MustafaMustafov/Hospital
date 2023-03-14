@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 </head>
 <body>
-    <a id="back-btn" th:href="@{/index}"><i class="fas fa-arrow-left"></i> Go back home</a>
+    <a id="back-btn" th:href="@{/}"><i class="fas fa-arrow-left"></i> Go back home</a>
     <div class="box">
         <div class="form">
             <form th:action="@{/setup-profile-info}" th:object="${user}" method="post">

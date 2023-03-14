@@ -42,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/register-success","/login","/signup","/process_register", "/styles/**", "/js/**", "/index" ,"/setup-profile-info").permitAll()
+                .antMatchers("/register-success","/login","/sign-up", "/styles/**", "/js/**", "/" ,"/setup-profile-info").permitAll()
                 .antMatchers("/doctor-controls/**").hasAnyAuthority("DOCTOR")
                 .antMatchers("/patient-controls/**").hasAnyAuthority("PATIENT")
                 .anyRequest().authenticated()
@@ -52,8 +52,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout().permitAll()
-                .and()
-                .exceptionHandling().accessDeniedPage("/403")
         ;
     }
 
