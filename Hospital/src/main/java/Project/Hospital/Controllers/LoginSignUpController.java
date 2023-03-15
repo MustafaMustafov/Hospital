@@ -28,13 +28,13 @@ public class LoginSignUpController {
         return "/auth/login";
     }
 
-    @GetMapping
+    @GetMapping("/log-success")
     public String showMenu(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("DOCTOR"))) {
-            return "/doctor/index";
+            return "redirect:/doctor-controls";
         } else {
-            return "/patient/index";
+            return "redirect:/patient-controls";
         }
     }
 

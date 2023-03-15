@@ -4,6 +4,8 @@ import Project.Hospital.Enums.AppointmentType;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 @Entity
 @Table(name = "appointments")
@@ -23,7 +25,7 @@ public class Appointment {
 //                joinColumns =@JoinColumn(name="appointment_id"),
 //                inverseJoinColumns = @JoinColumn(name="patient_id"))
     private Patient patient;
-    private Date date;
+    private String date;
     private String time;
     private AppointmentType appointmentType;
 
@@ -51,11 +53,11 @@ public class Appointment {
         this.patient = patient;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -73,5 +75,19 @@ public class Appointment {
 
     public void setAppointmentType(AppointmentType appointmentType) {
         this.appointmentType = appointmentType;
+    }
+
+    public Date getSQLDate() {
+        java.sql.Date sqlStartDate = null;
+
+        try {
+            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date date = sdf1.parse(this.date);
+            sqlStartDate = new java.sql.Date(date.getTime());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return sqlStartDate;
     }
 }

@@ -55,16 +55,20 @@ body{
   gap: 5em;
 }
 
-.links a {
+.links a, .rand2 {
   text-decoration: none;
   color: #fff;
   transition: 500ms ease-in-out;
   touch-action: manipulation;
   border-radius: 5px;
+  background-color: transparent;
+  border: 0;
   padding: 10px;
+  cursor: pointer;
 }
 
-.links a:hover{
+
+.links a:hover, .rand2:hover{
   color: #434343;
   background-color: #fff;
 }

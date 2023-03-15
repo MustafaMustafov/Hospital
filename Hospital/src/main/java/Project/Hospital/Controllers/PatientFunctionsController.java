@@ -49,13 +49,13 @@ public class PatientFunctionsController {
     @PostMapping("/submit-appointment")
     private ModelAndView saveAppointment(Appointment appointment) {
         if (patientService.checkDate(appointment)) {
-            return new ModelAndView("redirect:/create-appointment");
+            return new ModelAndView("redirect:/patient-controls/create-appointment");
         } else if (!patientService.ifDateAndTimeEmpty(appointment)) {
-            return new ModelAndView("redirect:/create-appointment");
+            return new ModelAndView("redirect:/patient-controls/create-appointment");
         }
         patientService.setAppointmentPatient(appointment);
         appointmentRepository.save(appointment);
-        return new ModelAndView("redirect:/");
+        return new ModelAndView("redirect:/patient-controls");
     }
 
     @GetMapping("/appointments")
@@ -83,7 +83,7 @@ public class PatientFunctionsController {
     private ModelAndView deleteAppointment(@PathVariable(name="appId")Integer appId) {
         System.out.println(appId);
         appointmentRepository.deleteById(appId);
-        return new ModelAndView("redirect:/");
+        return new ModelAndView("redirect:/patient-controls/cancel-appointment");
     }
 
     @GetMapping("/edit-appointment/{appId}")
@@ -97,13 +97,13 @@ public class PatientFunctionsController {
     @PostMapping("/update-appointment")
     private ModelAndView updateAppointment(Appointment appointment) {
         if (patientService.checkDate(appointment)) {
-            return new ModelAndView("redirect:/edit-appointment");
+            return new ModelAndView("redirect:/patient-controls/edit-appointment");
         } else if (!patientService.ifDateAndTimeEmpty(appointment)) {
-            return new ModelAndView("redirect:/edit-appointment");
+            return new ModelAndView("redirect:/patient-controls/edit-appointment");
         }
         patientService.setAppointmentPatient(appointment);
         appointmentRepository.save(appointment);
-        return new ModelAndView("redirect:/");
+        return new ModelAndView("redirect:/patient-controls");
     }
 
 

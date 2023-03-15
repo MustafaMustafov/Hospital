@@ -68,23 +68,25 @@ public class PatientService {
         boolean ifBefore = false;
         long millis=System.currentTimeMillis();
         Date date = new Date(millis);
-        if (date.compareTo(appointment.getDate())>0) {
+        if (date.compareTo(appointment.getSQLDate())>0) {
             ifBefore=true;
         }
+
         return ifBefore;
     }
 
     public boolean ifDateAndTimeEmpty(Appointment appointment) {
         boolean empty = true;
         String time = appointment.getTime();
-        Date date = appointment.getDate();
+        Date date = appointment.getSQLDate();
         Iterable<Appointment> appointments = appointmentRepository.findByDoctorId(appointment.getDoctor().getId());
         for (Appointment app : appointments) {
-            if (app.getDate().compareTo(date)==0)
+            if (app.getSQLDate().compareTo(date)==0)
                 if(app.getTime().equals(time)) {
                     empty=false;
                 }
         }
+
         return empty;
     }
 

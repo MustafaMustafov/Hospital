@@ -14,8 +14,13 @@
         <div class="text">
             <h1 style="float: left;">Hospital app</h1>
             <div class="links" style="float: right;">
-                <a th:href="@{/login}">SIGN IN</a>
-                <a th:href="@{/sign-up}">SIGN UP</a>
+                <a sec:authorize="!isAuthenticated()" th:href="@{/login}">SIGN IN</a>
+                <a sec:authorize="!isAuthenticated()" th:href="@{/sign-up}">SIGN UP</a>
+                <a sec:authorize="isAuthenticated()" th:href="@{/log-success}"><i class="fas fa-user"></i> PROFILE</a>
+                <form sec:authorize="isAuthenticated()" class="rand" th:action="@{/logout}" method="post">
+                    <input style="font-size: 15px" class="rand2" type="submit" value="LOGOUT">
+                </form>
+
             </div>
         </div>
         
