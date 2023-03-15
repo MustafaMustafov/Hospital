@@ -3,6 +3,7 @@ package Project.Hospital.Entities;
 import Project.Hospital.Enums.AppointmentType;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,9 +22,6 @@ public class Appointment {
     @JoinColumn(name = "doctor_id", nullable = true, referencedColumnName = "id")
     private Doctor doctor;
     @OneToOne
-//    @JoinTable(name="patients",
-//                joinColumns =@JoinColumn(name="appointment_id"),
-//                inverseJoinColumns = @JoinColumn(name="patient_id"))
     private Patient patient;
     private String date;
     private String time;

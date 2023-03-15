@@ -48,12 +48,16 @@ public class PatientFunctionsController {
 
     @PostMapping("/submit-appointment")
     private ModelAndView saveAppointment(Appointment appointment) {
+        int id = patientService.loggedUserId();
         if (patientService.checkDate(appointment)) {
             return new ModelAndView("redirect:/patient-controls/create-appointment");
-        } else if (!patientService.ifDateAndTimeEmpty(appointment)) {
+        } else if (!patientService.isDateAndTimeEmpty(appointment)) {
+            return new ModelAndView("redirect:/patient-controls/create-appointment");
+        } else if (!patientService.isEnoughTime(appointment)) {
+            System.out.println(patientService.isEnoughTime(appointment));
             return new ModelAndView("redirect:/patient-controls/create-appointment");
         }
-        patientService.setAppointmentPatient(appointment);
+        patientService.setAppointmentPatient(appointment,id);
         appointmentRepository.save(appointment);
         return new ModelAndView("redirect:/patient-controls");
     }
@@ -96,12 +100,13 @@ public class PatientFunctionsController {
 
     @PostMapping("/update-appointment")
     private ModelAndView updateAppointment(Appointment appointment) {
+        int id = patientService.loggedUserId();
         if (patientService.checkDate(appointment)) {
             return new ModelAndView("redirect:/patient-controls/edit-appointment");
-        } else if (!patientService.ifDateAndTimeEmpty(appointment)) {
+        } else if (!patientService.isDateAndTimeEmpty(appointment)) {
             return new ModelAndView("redirect:/patient-controls/edit-appointment");
         }
-        patientService.setAppointmentPatient(appointment);
+        patientService.setAppointmentPatient(appointment,id);
         appointmentRepository.save(appointment);
         return new ModelAndView("redirect:/patient-controls");
     }

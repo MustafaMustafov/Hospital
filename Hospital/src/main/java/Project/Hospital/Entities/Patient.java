@@ -1,6 +1,10 @@
 package Project.Hospital.Entities;
 
+import org.springframework.format.annotation.NumberFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="patients")
@@ -9,8 +13,12 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private int id;
+    @NotBlank
     private String firstName;
+    @NotBlank
     private String lastName;
+    @NotBlank
+    @NumberFormat
     private int age;
     @OneToOne
     private User user;

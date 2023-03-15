@@ -74,7 +74,7 @@ public class DoctorService {
         return appointments;
     }
 
-    public void groupAppointments(String value, String doctorName, Model model, String specialty, String date) {
+    public List<Appointment> groupAppointments(String value, String doctorName, String specialty, String date) {
         List<Appointment> appointments = null;
         if (!value.equalsIgnoreCase("docName")) {
             if (value.equalsIgnoreCase("specialty")) {
@@ -85,7 +85,6 @@ public class DoctorService {
         } else {
             appointments = appointmentRepository.groupByDoctorName(doctorName);
         }
-
-        model.addAttribute("appointments", appointments);
+        return appointments;
     }
 }
