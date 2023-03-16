@@ -44,8 +44,6 @@ public class DoctorServiceTest {
     @Mock
     AppointmentRepository appointmentRepository;
 
-    @Mock
-    DoctorRepository doctorRepository;
     @Test
     public void loggedUserIdTest() {
         Authentication auth = mock(Authentication.class);

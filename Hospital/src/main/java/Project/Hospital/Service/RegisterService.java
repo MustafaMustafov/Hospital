@@ -14,8 +14,9 @@ public class RegisterService {
     Iterable<User> users = userRepository.findAll();
     boolean existingUser = false;
         for (User usr: users) {
-        if (user.getUsername().equals(usr.getUsername())) {
+        if (usr.getUsername().equals(user.getUsername())) {
             existingUser=true;
+            break;
             }
         }
         return existingUser;
