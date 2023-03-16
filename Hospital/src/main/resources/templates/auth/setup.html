@@ -12,8 +12,8 @@
         <form th:action="@{/register-success}" method="post" th:object="${patient}">
             <div class="form-group row">
                 <input type="hidden" th:field="*{id}"/>
-                <p>First name: <input type="text" th:field="*{firstName}" required></p>
-                <p>Last name: <input type="text" th:field="*{lastName}" required></p>
+                <p>First name: <input type="text" th:field="*{firstName}" minlength="3" maxlength="20" required></p>
+                <p>Last name: <input type="text" th:field="*{lastName}" minlength="3" maxlength="20" required></p>
                 <p>Age: <input type="number" th:field="*{age}" required></p>
                 <p><input type="hidden" th:field="*{user}"></p>
                 <input type="submit" value="Setup">

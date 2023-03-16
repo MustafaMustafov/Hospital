@@ -4,6 +4,7 @@ import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -17,8 +18,7 @@ public class Patient {
     private String firstName;
     @NotBlank
     private String lastName;
-    @NotBlank
-    @NumberFormat
+    @NotNull
     private int age;
     @OneToOne
     private User user;

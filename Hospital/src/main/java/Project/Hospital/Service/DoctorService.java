@@ -63,13 +63,12 @@ public class DoctorService {
         return sortBy;
     }
 
-    public List<Appointment> appointmentOrder(String order, String sort) {
-        int doctorId = loggedUserId();
+    public List<Appointment> appointmentOrder(String order, String sort, int id) {
         List<Appointment> appointments;
         if (order.equals("desc")){
-            appointments = appointmentRepository.findBydoctorId(doctorId, Sort.by(sortBy(sort)).descending());
+            appointments = appointmentRepository.findBydoctorId(id, Sort.by(sortBy(sort)).descending());
         } else {
-            appointments = appointmentRepository.findBydoctorId(doctorId,Sort.by(sortBy(sort)).ascending());
+            appointments = appointmentRepository.findBydoctorId(id,Sort.by(sortBy(sort)).ascending());
         }
         return appointments;
     }

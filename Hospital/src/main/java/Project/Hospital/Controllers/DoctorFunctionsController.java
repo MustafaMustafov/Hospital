@@ -70,7 +70,8 @@ public class DoctorFunctionsController {
     private ModelAndView sortAppointments(@RequestParam(required = false,name="sort") String sort,
                                             @RequestParam(required = false,name="radioGroup") String order,
                                             Model model) {
-        List<Appointment> appointments = doctorService.appointmentOrder(order, sort);
+        int id = doctorService.loggedUserId();
+        List<Appointment> appointments = doctorService.appointmentOrder(order, sort,id);
         model.addAttribute("appointments",appointments);
         return new ModelAndView("/doctor/appointments/index");
     }
